@@ -1,6 +1,4 @@
 <script setup>
-import { useHead } from 'nuxt/app'
-
 useHead({
   title: 'VADIM4WEB – Розробка цифрових рішень',
   meta: [
@@ -23,6 +21,7 @@ useHead({
   ],
   link: [
     // { rel: 'manifest', href: '/manifest.json' },
+    { rel: 'icon', id: 'favicon', href: '/favicon_light.svg', type: 'image/svg+xml' },
     { rel: 'canonical', href: 'https://vadim4web.fwh.is' },
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },

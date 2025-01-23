@@ -1,3 +1,140 @@
+<script setup>
+import { useLoader } from '~/composables/useLoader';
+const { showLoader } = useLoader();
+const colorMode = useColorMode();
+const color = ref(colorMode.value === 'dark' ? '#fff' : '#000');
+
+const totalDuration = 1755;
+const isVisible = ref(true);
+const fadeOutClass = ref(false);
+const logoOverlay = ref(null);
+const logo2dCanvas = ref(null);
+
+function startAnimation() {
+  const overlay = logoOverlay.value;
+  const canvas = logo2dCanvas.value;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.lineWidth = 28;
+  ctx.strokeStyle = color.value;
+
+  const drawFunctions = [
+    progress => {
+      ctx.beginPath();
+      ctx.moveTo(200, 400);
+      ctx.lineTo(200, 400 - progress);
+      ctx.stroke();
+    },
+    progress => {
+      ctx.beginPath();
+      ctx.moveTo(200, 0);
+      ctx.lineTo(200 - progress, progress);
+      ctx.stroke();
+    },
+    progress => {
+      ctx.beginPath();
+      ctx.moveTo(0, 200);
+      ctx.lineTo(progress, 200);
+      ctx.stroke();
+    },
+    progress => {
+      ctx.beginPath();
+      ctx.ellipse(
+        200,
+        107,
+        93,
+        93,
+        Math.PI / 2,
+        0,
+        (-Math.PI / 180) * progress,
+        true
+      );
+      ctx.stroke();
+    },
+    progress => {
+      ctx.beginPath();
+      ctx.ellipse(
+        200,
+        200,
+        186,
+        186,
+        -Math.PI / 2,
+        0,
+        (-Math.PI / 180) * progress,
+        true
+      );
+      ctx.stroke();
+    },
+  ];
+
+  const segmentDurations = [0.15, 0.11, 0.08, 0.22, 0.44].map(
+    percentage => totalDuration * percentage
+  );
+  const segmentMaxValues = [400, 200, 200, 180, 360];
+
+  let startTime = null;
+
+  function animate(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+
+    let accumulatedTime = 0;
+
+    for (let i = 0; i < drawFunctions.length; i++) {
+      const segmentStart = accumulatedTime;
+      const segmentEnd = accumulatedTime + segmentDurations[i];
+
+      if (elapsed >= segmentStart && elapsed <= segmentEnd) {
+        const segmentProgress = (elapsed - segmentStart) / segmentDurations[i];
+        const progressValue = segmentMaxValues[i] * segmentProgress;
+        drawFunctions[i](Math.min(progressValue, segmentMaxValues[i]));
+      } else if (elapsed > segmentEnd) {
+        drawFunctions[i](segmentMaxValues[i]);
+      }
+      accumulatedTime += segmentDurations[i];
+    }
+
+    if (elapsed < totalDuration) {
+      requestAnimationFrame(animate);
+    } else {
+      fadeOutClass.value = true;
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+const handleAnimationEnd = () => {
+  isVisible.value = false;
+  fadeOutClass.value = false;
+};
+
+watch(
+  () => showLoader.value,
+  newValue => {
+    if (newValue) {
+      startAnimation();
+      isVisible.value = true;
+      fadeOutClass.value = false;
+    } else {
+      fadeOutClass.value = true;
+    }
+  }
+);
+
+watch(
+  () => colorMode.value,
+  newValue => {
+    color.value = newValue === 'dark' ? '#fff' : '#000';
+  }
+);
+
+onMounted(() => {
+  color.value = colorMode.value === 'dark' ? '#fff' : '#000';
+  startAnimation();
+});
+</script>
+
 <template>
   <div
     id="logoOverlay"
@@ -31,136 +168,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useLoader } from '@/composables/useLoader'
-
-const totalDuration = 1755 // Час для анімації
-const isVisible = ref(true)
-const fadeOutClass = ref(false)
-const logoOverlay = ref(null)
-const logo2dCanvas = ref(null)
-
-const colorMode = useColorMode()
-const { showLoader } = useLoader()
-const color = ref(colorMode.value === 'dark' ? '#fff' : '#000')
-
-function startAnimation() {
-  const overlay = logoOverlay.value
-  const canvas = logo2dCanvas.value
-  const ctx = canvas.getContext('2d')
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.lineWidth = 28
-  ctx.strokeStyle = color.value
-
-  const drawFunctions = [
-    progress => {
-      ctx.beginPath()
-      ctx.moveTo(200, 400)
-      ctx.lineTo(200, 400 - progress)
-      ctx.stroke()
-    },
-    progress => {
-      ctx.beginPath()
-      ctx.moveTo(200, 0)
-      ctx.lineTo(200 - progress, progress)
-      ctx.stroke()
-    },
-    progress => {
-      ctx.beginPath()
-      ctx.moveTo(0, 200)
-      ctx.lineTo(progress, 200)
-      ctx.stroke()
-    },
-    progress => {
-      ctx.beginPath()
-      ctx.ellipse(
-        200,
-        107,
-        93,
-        93,
-        Math.PI / 2,
-        0,
-        (-Math.PI / 180) * progress,
-        true
-      )
-      ctx.stroke()
-    },
-    progress => {
-      ctx.beginPath()
-      ctx.ellipse(
-        200,
-        200,
-        186,
-        186,
-        -Math.PI / 2,
-        0,
-        (-Math.PI / 180) * progress,
-        true
-      )
-      ctx.stroke()
-    },
-  ]
-
-  const segmentDurations = [0.15, 0.11, 0.08, 0.22, 0.44].map(
-    percentage => totalDuration * percentage
-  )
-  const segmentMaxValues = [400, 200, 200, 180, 360]
-
-  let startTime = null
-
-  function animate(timestamp) {
-    if (!startTime) startTime = timestamp
-    const elapsed = timestamp - startTime
-
-    let accumulatedTime = 0
-
-    for (let i = 0; i < drawFunctions.length; i++) {
-      const segmentStart = accumulatedTime
-      const segmentEnd = accumulatedTime + segmentDurations[i]
-
-      if (elapsed >= segmentStart && elapsed <= segmentEnd) {
-        const segmentProgress = (elapsed - segmentStart) / segmentDurations[i]
-        const progressValue = segmentMaxValues[i] * segmentProgress
-        drawFunctions[i](Math.min(progressValue, segmentMaxValues[i]))
-      } else if (elapsed > segmentEnd) {
-        drawFunctions[i](segmentMaxValues[i])
-      }
-      accumulatedTime += segmentDurations[i]
-    }
-
-    if (elapsed < totalDuration) {
-      requestAnimationFrame(animate)
-    } else {
-      fadeOutClass.value = true
-    }
-  }
-
-  requestAnimationFrame(animate)
-}
-
-const handleAnimationEnd = () => {
-  isVisible.value = false
-  fadeOutClass.value = false
-}
-
-watch(
-  () => showLoader.value,
-  newValue => {
-    if (newValue) {
-      startAnimation()
-      isVisible.value = true
-      fadeOutClass.value = false
-    } else {
-      fadeOutClass.value = true
-    }
-  }
-)
-
-onMounted(() => {
-  startAnimation()
-})
-</script>
 
 <style scoped>
 @keyframes fade-out {

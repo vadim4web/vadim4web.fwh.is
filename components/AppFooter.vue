@@ -1,19 +1,21 @@
+<script></script>
+
 <template>
 	<footer class="footer flex-align flex-col rel">
 		<h5 class="h4 top text-center">
-			<router-link
+			<NuxtLink
 				class="link not-to-show-active"
 				style="padding: 1rem; border-radius: 4rem"
 				to="/contact"
 			>
 				{{ $t('footerGIT') }}
-			</router-link>
+			</NuxtLink>
 		</h5>
 
 		<h5 class="h1 mail">
-			<a
+			<NuxtLink
 				class="link"
-				:href="`mailto:vadim4web@gmail.com?subject=${encodeURIComponent(
+				:to="`mailto:vadim4web@gmail.com?subject=${encodeURIComponent(
 					$t('emailSubject')
 				)}`"
 				rel="noopener noreferrer"
@@ -21,7 +23,7 @@
 				target="_blank"
 			>
 				vadim4web@gmail.com
-			</a>
+			</NuxtLink >
 		</h5>
 
 		<div class="grid info w100">
@@ -37,15 +39,15 @@
 
 			<div class="contacts">
 				<h5 class="h4 phone">
-					<a href="tel:+380933789883" target="_self" :title="$t('callMe')">
+					<NuxtLink to="tel:+380933789883" target="_self" :title="$t('callMe')">
 						+380-933-789-883
-					</a>
+					</NuxtLink >
 				</h5>
 
 				<div class="links">
 					<h5 class="h4">
-						<a
-							href="https://github.com/vadim4web"
+						<NuxtLink
+							to="https://github.com/vadim4web"
 							rel="noopener noreferrer"
 							target="_blank"
 							:title="$t('gitHub')"
@@ -79,12 +81,12 @@
 							</svg>
 
 							&nbsp;
-						</a>
+						</NuxtLink >
 					</h5>
 
 					<h5 class="h4">
-						<a
-							href="https://x.com/vadim4web"
+						<NuxtLink
+							to="https://x.com/vadim4web"
 							rel="noopener noreferrer"
 							target="_blank"
 							:title="$t('xtwitter')"
@@ -125,12 +127,12 @@
 							</svg>
 
 							&nbsp;
-						</a>
+						</NuxtLink >
 					</h5>
 
 					<h5 class="h4">
-						<a
-							href="https://t.me/vadim4web"
+						<NuxtLink
+							to="https://t.me/vadim4web"
 							rel="noopener noreferrer"
 							target="_blank"
 							:title="$t('chatMe')"
@@ -158,7 +160,7 @@
 							</svg>
 
 							&nbsp;
-						</a>
+						</NuxtLink >
 					</h5>
 				</div>
 			</div>
@@ -166,14 +168,14 @@
 
 		<h5 class="h4 hr-above text-center w100">
 			&copy; 2021-{{ new Date().getFullYear() }}
-			<a
-				href="https://github.com/vadim4web"
+			<NuxtLink
+				to="https://github.com/vadim4web"
 				rel="noopener noreferrer"
 				target="_blank"
 				:title="$t('gitHub')"
       >
 				VADIM4WEB.
-			</a>
+			</NuxtLink >
 			<em> {{ $t('copyright') }}. </em>
 		</h5>
 	</footer>
@@ -237,7 +239,7 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-end;
-	gap: 1rem;
+	gap: 1.75rem;
 	padding: 1rem 0;
 
 	.h4 {

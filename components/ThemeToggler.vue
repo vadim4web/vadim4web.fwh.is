@@ -1,4 +1,6 @@
 <script setup>
+import { useThemeColor } from '~/composables/useThemeColor';
+const { setThemeColor } = useThemeColor();
 const { x, y } = useMouse()
 const { width, height } = useWindowSize()
 const offsetX = ref(50)
@@ -10,19 +12,18 @@ const isDark = computed({
   },
   set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+		const color = colorMode.value === 'dark' ? '#ffffff' : '#000000'
+		setThemeColor(color)
   },
 })
 
-// function updateFavicon() {
-//   const favicon = isDark.value ? '/favicon_dark.svg' : '/favicon_light.svg'
-//   useFavicon(favicon)
-// }
-
-// watch(isDark, updateFavicon, { immediate: false })
-
-// Виклик функції `updateFavicon` у потрібний момент
-// onMounted(() => {
-//   updateFavicon() // Перший виклик при завантаженні
+// useHead({
+//   meta: [
+//     { name: 'theme-color', content: '#ffffff' },
+//   ],
+//   link: [
+//     { rel: 'icon', id: 'favicon', href: '/favicon_light.svg', type: 'image/svg+xml' },
+//   ],
 // })
 
 onUpdated(() => {

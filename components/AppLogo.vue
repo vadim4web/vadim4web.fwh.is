@@ -1,3 +1,11 @@
+<script setup>
+const { fontWeight } = defineProps({ fontWeight: String })
+
+const strokeWidth = computed(() =>
+	fontWeight === 'bold' ? 'max(0.9vmin, 9px)' : 'max(0.6vmin, 6px)'
+)
+</script>
+
 <template>
 	<svg
 		class="logo-svg flex-center"
@@ -78,14 +86,6 @@
 		</text>
 	</svg>
 </template>
-
-<script setup>
-const { fontWeight } = defineProps({ fontWeight: String })
-
-const strokeWidth = computed(() =>
-	fontWeight === 'bold' ? 'max(0.9vmin, 9px)' : 'max(0.6vmin, 6px)'
-)
-</script>
 
 <style lang="scss">
 .logo-svg {

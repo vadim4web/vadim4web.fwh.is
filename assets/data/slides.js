@@ -136,6 +136,8 @@ const slidesArray = [
 	},
 ]
 
+const ASSETS_DIR = '/tools/'
+
 const arrayToHTML = content =>
 	content
 		.map(
@@ -147,7 +149,7 @@ const arrayToHTML = content =>
 	>
     <div
 			class="image"
-			style="background: url('${item.path}'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 6rem; height: 6rem; margin-bottom: 1rem;
+			style="background: url('${ASSETS_DIR + item.path}'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 6rem; height: 6rem; margin-bottom: 1rem;
 			${item.to_invert === true && 'filter: invert(var(--is-dark));'}"
 		></div>
     	<p class="p2" style="margin-bottom: 3rem;"><i>${item.name}</i></p>

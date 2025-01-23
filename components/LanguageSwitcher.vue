@@ -1,22 +1,14 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { ref, computed, onMounted } from 'vue'
-import { usePreferredLanguages } from '@vueuse/core'
-
 const { setLocale, locale } = useI18n()
 const showOptions = ref(false)
 const selectedLanguage = ref(locale.value)
-
-// Отримуємо мови, які віддаються перевазі користувачем через usePreferredLanguages
 const preferredLanguages = usePreferredLanguages()
 
-// Визначаємо мови для вибору
 const availableLanguages = ref([
   { code: 'en', flag: '/flags/en.webp', name: 'English' },
   { code: 'uk', flag: '/flags/uk.webp', name: 'Українська' }
 ])
 
-// Сортуємо мови так, щоб вибрана була на першому місці
 const sortedLanguages = computed(() => {
   return [...availableLanguages.value].sort(l =>
     l.code === selectedLanguage.value ? -1 : 1
@@ -37,11 +29,10 @@ const closeMenu = () => {
   showOptions.value = false
 }
 
-// При завантаженні встановлюємо мову згідно з мовою користувача
 onMounted(() => {
-  const userLang = preferredLanguages[0] || 'en-US' // Оскільки у нас може бути тільки одна мова
+  const userLang = preferredLanguages[0] || 'en-US'
   const langToSet = userLang.includes('ru') || userLang.includes('uk') ? 'uk' : 'en'
-  setLocale(langToSet) // Встановлюємо мову в I18n
+  setLocale(langToSet)
 })
 </script>
 
@@ -62,7 +53,6 @@ onMounted(() => {
         v-for="lang in sortedLanguages"
         :key="lang.code"
         class="select-option rel"
-        :style="{ 'z-index': lang.code !== selectedLanguage ? 0 : 1 }"
         @click="changeLanguage(lang.code)"
       >
         <img

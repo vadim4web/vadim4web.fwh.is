@@ -1,34 +1,36 @@
+<script></script>
+
 <template>
 	<header class="header w100 back-blur05">
 		<nav>
 			<menu class="w100 rel">
 				<li class="menu-item w100 flex-center text-center">
-					<router-link class="link flex-center w100 logo-link" to="/">
+					<NuxtLink class="link flex-center w100 logo-link" to="/">
 						<app-logo font-weight="bold" />
-					</router-link>
+					</NuxtLink>
 				</li>
 
 				<li class="menu-item w100 flex-center text-center">
-					<router-link class="link flex-center w100" to="/about">
+					<NuxtLink class="link flex-center w100" to="/about">
 						{{ $t('AboutMe') }}
-					</router-link>
+					</NuxtLink>
 				</li>
 
 				<li class="menu-item w100 flex-center text-center">
-					<router-link class="link flex-center w100" to="/projects">
+					<NuxtLink class="link flex-center w100" to="/projects">
 						{{ $t('MyWorks') }}
-					</router-link>
+					</NuxtLink>
 				</li>
 
 				<li class="menu-item w100 flex-center text-center">
-					<router-link class="link flex-center w100" to="/contact">
+					<NuxtLink class="link flex-center w100" to="/contact">
 						{{ $t('MyContacts') }}
-					</router-link>
+					</NuxtLink>
 				</li>
 
 				<li class="menu-item w100 flex-col-center text-center global-view">
-					<theme-toggler />
-					<language-switcher />
+					<ThemeToggler />
+					<LanguageSwitcher />
 				</li>
 			</menu>
 		</nav>
@@ -66,7 +68,7 @@ menu {
 		border: 0.125rem solid transparent;
 
 		&:hover,
-		&.router-link-active {
+		&.NuxtLink-active {
 			border: 0.125rem solid var(--color50);
 			border-radius: 10vmin;
 			color: var(--color0);
@@ -75,7 +77,7 @@ menu {
 		}
 
 		&:hover .logo-image,
-		&.router-link-active .logo-image {
+		&.NuxtLink-active .logo-image {
 			stroke: var(--color0);
 			filter: url(#shadowActive);
 		}
