@@ -38,6 +38,9 @@ watch(
 );
 
 useHead({
+  htmlAttrs: {
+      lang: 'uk'
+  },
   title: 'VADIM4WEB – Розробка цифрових рішень',
   meta: [
     { name: 'description', content: 'Розробка цифрових рішень для бізнесу. Досконалість у кожній деталі.' },
