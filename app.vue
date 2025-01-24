@@ -106,9 +106,7 @@ useHead({
   <div>
     <PageLoader v-if="showLoader" />
     <NuxtLayout>
-      <div>
-        <NuxtPage />
-      </div>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>

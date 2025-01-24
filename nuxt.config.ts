@@ -8,9 +8,6 @@ export default defineNuxtConfig({
       emailjsUserKey: process.env.NUXT_EMAILJS_USER_KEY,
     }
   },
-  // colorMode: {
-  //   preference: 'light'
-  // },
   css: ['~/assets/css/main.css'],
   modules: ['@nuxtjs/color-mode', '@vueuse/nuxt', '@nuxtjs/i18n', 'dayjs-nuxt'],
   i18n: {
@@ -23,4 +20,5 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/clickOutside.client.js',
   ],
+  // ssr: false,
 })
