@@ -1,14 +1,3 @@
-<template>
-  <div>
-    <PageLoader v-if="showLoader" />
-    <NuxtLayout>
-      <div>
-        <NuxtPage />
-      </div>
-    </NuxtLayout>
-  </div>
-</template>
-
 <script setup>
 import { useLoader } from '~/composables/useLoader'
 const { showLoader, setShowLoader } = useLoader()
@@ -112,3 +101,14 @@ useHead({
   ],
 })
 </script>
+
+<template>
+  <div>
+    <PageLoader v-if="showLoader" />
+    <NuxtLayout>
+      <div>
+        <NuxtPage />
+      </div>
+    </NuxtLayout>
+  </div>
+</template>
