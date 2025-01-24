@@ -77,20 +77,14 @@ const br = computed(() => (zoom.value === '0.3' ? '3.333rem' : '5.714285rem'))
 		gap: 0.75rem;
 
 		@media (orientation: landscape) {
-			grid-template-rows: 29rem 4rem 2.75rem;
-			width: 29rem;
+			grid-template-rows: calc(29rem - 2px) 4rem 2.75rem;
+			width: calc(29rem - 2px);
 			height: calc(29rem + 8.75rem);
 		}
 
 		@media (orientation: portrait) {
-			grid-template-rows: 18rem 4rem 2.75rem;
-			width: 18rem;
-			height: calc(18rem + 8.75rem);
-		}
-
-		& {
-			grid-template-rows: 18rem 4rem 2.75rem;
-			width: 18rem;
+			grid-template-rows: calc(18rem - 2px) 4rem 2.75rem;
+			width: calc(18rem - 2px);
 			height: calc(18rem + 8.75rem);
 		}
 

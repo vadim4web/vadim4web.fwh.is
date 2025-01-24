@@ -12,19 +12,10 @@ const isDark = computed({
   },
   set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-		const color = colorMode.value === 'dark' ? '#ffffff' : '#000000'
+		const color = colorMode.value === 'dark' ? '#000000' : '#ffffff'
 		setThemeColor(color)
   },
 })
-
-// useHead({
-//   meta: [
-//     { name: 'theme-color', content: '#ffffff' },
-//   ],
-//   link: [
-//     { rel: 'icon', id: 'favicon', href: '/favicon_light.svg', type: 'image/svg+xml' },
-//   ],
-// })
 
 onUpdated(() => {
   offsetX.value = (x.value / width.value) * 100 || 50

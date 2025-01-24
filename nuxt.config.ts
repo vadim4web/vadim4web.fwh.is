@@ -1,6 +1,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      emailjsServiceId: process.env.NUXT_EMAILJS_SERVICE_ID,
+      emailjsTemplateId: process.env.NUXT_EMAILJS_TEMPLATE_ID,
+      emailjsUserKey: process.env.NUXT_EMAILJS_USER_KEY,
+    }
+  },
   // colorMode: {
   //   preference: 'light'
   // },

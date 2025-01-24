@@ -17,18 +17,15 @@ export default defineI18nConfig(() => ({
       homeH12: "Excellence in Every Detail.",
 
       homeB1: "EXPLORE WORKS",
-      homeH211: "Let’s get to",
-      homeH212: "know me",
+      homeH211: "Let’s get",
+      homeH212: "to know me",
       homeH213: "closer",
-
-      homeP1:
-        "Hello, I am Vadim Chervoniak, a Full-stack developer based in Ukraine. My expertise includes HTML, CSS, JavaScript, Vue, React, Node.js, various databases, cloud computing, and integrating with different APIs, helping me to deliver complex web development solutions.",
 
       homeP11:
         "Hello, my name is Vadim Chervoniak, I am from Ukraine and I’ve got ",
       homeP12: "approximately ~ ",
       homeP13:
-        "I am a full-stack developer with expertise in vue, react, node.js, and modern web technologies.",
+        "I am a full-stack developer with expertise in vue, nuxt, node.js, and a polyglot in modern web technologies.",
       homeP14:
         "My experience spans both front-end and back-end technologies, api integrations, database management, and cloud services, enabling me to deliver complete and efficient web solutions.",
 
@@ -128,7 +125,7 @@ export default defineI18nConfig(() => ({
       homeP11: "Привіт, мене звати Вадім Червоняк, я з України і мені ",
       homeP12: "приблизно ~ ",
       homeP13:
-        "Я — full-stack розробник з експертизою у vue, react, node.js та сучасних веб-технологіях.",
+        "Я — full-stack розробник з експертизою у Vue, Nuxt, Node.js та поліглот у сучасних веб-технологіях.",
       homeP14:
         "Мій досвід охоплює фронтенд та бекенд технології, управління базами даних, хмарні сервіси та інтеграцію з api, що дозволяє реалізовувати комплексні та ефективні рішення.",
 

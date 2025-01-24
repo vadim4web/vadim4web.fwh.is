@@ -71,7 +71,8 @@ const handleClick = () => {
 	text-shadow: 0 0 0.5em var(--color-op);
 	mix-blend-mode: var(--mix-blend-mode1);
 
-	&:hover {
+	&:hover,
+	&:focus {
 		text-shadow: 0 0 0.5em var(--accent0);
 		box-shadow: inset 1rem 1rem 1rem #0004;
 		mix-blend-mode: var(--mix-blend-mode2);

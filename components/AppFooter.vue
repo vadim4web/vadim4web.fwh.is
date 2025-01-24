@@ -214,7 +214,7 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: 22vw 36vw 22vw;
+		grid-template-columns: 22vw 36vw calc(22vw + 0.25rem);
 		height: 8rem;
 		padding-bottom: 2.5rem;
 
@@ -240,11 +240,14 @@
 	align-items: flex-start;
 	justify-content: flex-end;
 	gap: 1.75rem;
-	padding: 1rem 0;
+	padding: 1rem 0 0;
 
 	.h4 {
 		width: 3.5rem;
 		height: 3.5rem;
+
+		a {
+		}
 	}
 }
 

@@ -18,15 +18,26 @@ const colorMode = useColorMode()
 const themeColor = ref(() => colorMode.value ===  'dark' ? '#000000' : '#ffffff')
 const themeIcon = ref(() => colorMode.value ===  'dark' ? '/favicon_dark.svg' : '/favicon_light.svg')
 
+const { y } = useWindowScroll()
+const scrollUp = () => y.value = 0
+
 router.beforeEach((to, from, next) => {
   setShowLoader(true)
   next()
 })
 
 router.afterEach(() => {
-  setTimeout(() => {
-    setShowLoader(false)
-  }, 1755)
+  if (!sessionStorage.getItem('once_loaded')) {
+    sessionStorage.setItem('once_loaded', true)
+    setTimeout(() => {
+      setShowLoader(false)
+    }, 3510);
+  } else {
+    setTimeout(() => {
+      setShowLoader(false)
+    }, 1755);
+  }
+  scrollUp()
 })
 
 watch(
