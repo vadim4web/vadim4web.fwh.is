@@ -20,5 +20,5 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/clickOutside.client.js',
   ],
-  // ssr: false,
+  ssr: false,
 })
