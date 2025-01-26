@@ -1,0 +1,21 @@
+# Увімкнення модуля RewriteEngine
+RewriteEngine On
+RewriteBase /
+
+# Видалення параметра ?i=1
+RewriteCond %{QUERY_STRING} ^i=1$
+RewriteRule ^(.*)$ /$1? [L]
+
+# Кешування зображень
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|glb)$">
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Кешування статичних ресурсів
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|json|woff|woff2|ttf|otf|eot|ico|svg|png|jpg|jpeg|gif|webp|glb)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
